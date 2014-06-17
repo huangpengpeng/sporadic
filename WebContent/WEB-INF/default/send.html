@@ -1,0 +1,70 @@
+[@Override baseView="/WEB-INF/t/d.html"]
+[@Override overrideName="link"]	
+	<link  rel="stylesheet"  href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.css">
+   <link rel="stylesheet" href="/r/common/css/style.css">
+   <style>
+	    .emailist{border:1px solid #bdbdbd; border-radius: 4px; background-color:#fff; color:#666; font-size:14px; list-style-type:0; padding:0; margin:0; overflow:hidden;}
+		.emailist li{padding:2px 11px; cursor:pointer;}
+		.emailist .on, .emailist li:hover{background-color:#eee;}
+   </style>
+[/@Override]
+[@Override overrideName="body" ]
+   <section class="docs-heading">
+        <div class="container">
+            <h2>
+			<p><strong>闪电发送、及时监控收件人查看时间、所在地、访问深度、访问次数.....</strong></p>
+			</h2>
+        </div>
+    </section>
+    <section  class="docs-content">
+      <div  class="container">
+        <article  class="docs-body" style="width:820px;">
+        	[#if errors?? ]
+        		<blockquote style="background-position:780px 10px;">
+					<p>
+						<strong>发送失败：</strong> 
+						[#list errors as error]${error}&nbsp;
+						[/#list]
+					</p>
+				</blockquote>
+			[/#if]
+			[#if success?? ]
+				<blockquote style="background-position:780px 10px;">
+					<p><strong>发送成功：</strong> 您可以点击<code><a href="/list.html">监控邮件</a></code>及时知晓邮件是否被查看。</p>
+				</blockquote>
+			[/#if]
+			[@p.form id="sendForm" action="/message/send.jhtml" ]
+			  <div class="form-group">
+				<label for="form">发件箱用户名:</label>
+				<input type="email" class="input form-control" id="form" name="form" value="${form}"  placeholder="请输入邮箱" >
+			  </div>
+			  <div class="form-group">
+				<label for="password">发件箱密码:</label>
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+			  </div>
+			   <div class="form-group">
+				<label for="to">接收邮件名:</label>
+				<input type="email" class="form-control" id="to" name="to" value="${to}" placeholder="Enter email">
+			  </div>
+			  <div class="form-group">
+				<label for="subject">主题:</label>
+				<input type="text" class="form-control" id="subject" name="subject" value="${subject}" placeholder="Enter subject">
+			  </div>
+			  <div class="form-group">
+					<label for="text">正文:</label>
+					<textarea class="form-control" id="text" name="text" rows="15" placeholder="邮件暂时只支持文本内容,附件图片等富文本内容后续支持,进去期待......">${text}</textarea>
+			  </div>
+			  <button type="submit" id="submit" data-loading-text="正在发送..." class="btn btn-primary">
+			  		Submit
+			 </button>
+			[/@p.form]
+        </article>
+        <div  class="clearfix"></div>
+      </div>
+    </section>
+[/@Override]
+[@Override overrideName="javascript"]
+	<script src="/r/common/js/jquery.mailAutoComplete-4.0.js"></script>
+	<script src="/r/common/js/validate.js"></script>
+[/@Override]
+[/@Override]

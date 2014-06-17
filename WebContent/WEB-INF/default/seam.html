@@ -1,0 +1,118 @@
+[@Override baseView="/WEB-INF/t/d.html"]
+[@Override overrideName="link"]	
+	<link  rel="stylesheet"  href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.css">
+   <link rel="stylesheet" href="/r/common/css/style.css">
+   <style>
+	    .emailist{border:1px solid #bdbdbd; border-radius: 4px; background-color:#fff; color:#666; font-size:14px; list-style-type:0; padding:0; margin:0; overflow:hidden;}
+		.emailist li{padding:2px 11px; cursor:pointer;}
+		.emailist .on, .emailist li:hover{background-color:#eee;}
+   </style>
+[/@Override]
+[@Override overrideName="body" ]
+   <section class="docs-heading">
+        <div class="container">
+            <h2>
+			<p><strong>邮件内容嵌入生成的网络图片地址,无需输入用户名密码、安全监控邮件信息</strong></p>
+			</h2>
+        </div>
+    </section>
+    <section  class="docs-content">
+      <div  class="container">
+        <article  class="docs-body" style="width:820px;">
+        	[#if errors?? ]
+        		<blockquote style="background-position:780px 10px;">
+					<p>
+						<strong>发送失败：</strong> 
+						[#list errors as error]${error}&nbsp;
+						[/#list]
+					</p>
+				</blockquote>
+			[/#if]
+				<blockquote style="background-position:780px 10px;">
+					<p><strong>发送成功：</strong> <code><a id="fe_text" href="/list.html">http://huangpengpeng/seamMail/asdasdfsadf.jpeg</a></code>
+					<button type="button" id="d_clip" class="btn btn-danger" data-clipboard-text="http://huangpengpeng/seamMail/asdasdfsadf.jpeg" data-loading-text="复制成功">
+					点击复制</button>
+					</p>
+				</blockquote>
+			[@p.form id="sendForm" action="/message/send.jhtml" ]
+			  <div class="form-group">
+				<label for="form">发件箱用户名:</label>
+				<input type="email" class="input form-control" id="form" name="form" value="${form}"  placeholder="请输入邮箱" >
+			  </div>
+			  <div class="form-group">
+				<label for="subject">主题:</label>
+				<input type="text" class="form-control" id="subject" name="subject" value="${subject}"  placeholder="请输入主题">
+			  </div>
+			  <div class="form-group">
+					<label for="text">正文:</label>
+					<textarea class="form-control" name="text" rows="15" placeholder="需要监控用户邮件内容点击数时可以输入,其他情况可不填">${text}</textarea>
+			  </div>
+			  <button type="submit" id="submit" data-loading-text="正在发送..." class="btn btn-primary">
+			  		Submit
+			 </button>
+			[/@p.form]
+        </article>
+        <div  class="clearfix"></div>
+      </div>
+    </section>
+[/@Override]
+[@Override overrideName="javascript"]
+	<script src="/r/common/js/jquery.mailAutoComplete-4.0.js"></script>
+	<script src="/r/common/js/ZeroClipboard.js"></script>
+	<script>
+		$(function(){
+			$("#form").mailAutoComplete();
+			$("#form,#subject").blur(function(){
+				if($(this).attr("id")=="form"){
+					return checkFrom(this);
+				}
+				if($(this).attr("id")=="subject"){
+					return checkSubject(this);
+				}
+				if($(this).attr("id")=="text"){
+					return checkText(this);
+				}
+			});
+			$("#form,#subject").focus(function(){
+				$(this).parents(".form-group").removeClass("has-error");
+				$(this).parents(".form-group").children("label[for='inputError']").remove();
+			});
+			function checkFrom(obj){
+				var val=$(obj).val();
+				if(!chackNull(obj)){
+					return false;
+				}
+				var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;  
+				if(!Regex.test(val)){
+					$(obj).parents(".form-group").addClass("has-error");
+					$(obj).parents(".form-group").children("label").after('<label class="control-label" for="inputError">格式错误</label>');
+					return false;
+				}
+				return true;
+			}
+			function checkSubject(obj){
+				var val=$(obj).val();
+				if(!chackNull(obj)){
+					return false;
+				}
+				if(val.length>120){
+					$(obj).parents(".form-group").addClass("has-error");
+					$(obj).parents(".form-group").children("label").after('<label class="control-label" for="inputError">主题长度不能超过120个中文字符</label>');
+					return false;
+				}
+			}
+			
+			var clip = new ZeroClipboard( document.getElementById("d_clip"), {
+				  moviePath: "/r/common/js/ZeroClipboard.swf"
+				} );
+			
+			clip.on( "load", function(client) {
+				  client.on( "complete", function(client, args) {
+					  clip.setText("aaaaaaaaaaaaaaaaaaa");
+					  $("#d_clip").button('loading');
+				  } );
+				} );
+		});
+	</script>
+[/@Override]
+[/@Override]

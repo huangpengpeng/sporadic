@@ -1,0 +1,60 @@
+[@Override baseView="/WEB-INF/t/d.html"]
+[@Override overrideName="body" ]
+    <section class="notice" style="height: auto;">
+        <div class="container">
+            作者:黄鹏鹏
+            <span class="qq-group">QQ：330659459</span>
+        </div>
+    </section>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>
+                <span class="line-one">遇事误慌   无欲则刚</span>
+                <span class="line-two">正在慢慢进化....</span>
+            </h1>
+            [#if user_key??]
+            	 <a   href="/send.html"  class="call-button">快速发送邮件</a>
+            [#else]
+            	 <a  data-trigger="modal" href="/login.html?returnUrl=/send.html" data-title="用户登录"  class="call-button">快速发送邮件</a>
+            [/#if]
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <ul class="feature-box">
+                <li>
+                    <h2>
+                     [#if user_key??]
+                   		 <a title="发送邮件" href="/send.html">发送邮件</a>
+                    [#else]
+                    	 <a  data-trigger="modal" href="/login.html?returnUrl=/send.html" data-title="用户登录" >发送邮件</a>
+                    [/#if]
+                    </h2>
+                    <p>闪电发送、及时监控收件人查看时间、所在地、访问深度、访问次数.....</p>
+                </li>
+<!--                 <li> -->
+<!--                     <h2><a title="RESTful Routing" href="/seam.html">无缝邮件</a></h2> -->
+<!--                     <p>通过邮件内容嵌入生成的网络图片地址,无需输入用户名密码等信息、安全监控邮件信息</p> -->
+<!--                 </li> -->
+                <li>
+                    <h2>
+                    [#if user_key??]
+                   		 <a title="监控邮件" href="/list.html">监控邮件</a>
+                    [#else]
+                    	 <a  data-trigger="modal" href="/login.html?returnUrl=/list.html" data-title="用户登录" >监控邮件</a>
+                    [/#if]
+                    </h2>
+                    <p>个性化监控发送的所有历史邮件、掌握对方动态、做出正确评估.....</p>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </section>
+[/@Override]
+[@Override overrideName="javascript"]
+<script>
+</script>
+[/@Override]
+[/@Override]

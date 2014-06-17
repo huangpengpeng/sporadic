@@ -1,0 +1,43 @@
+[@Override baseView="/WEB-INF/t/d.html"]
+[@Override overrideName="link"]	
+   <link rel="stylesheet" href="/r/common/css/style.css">
+[/@Override]
+[@Override overrideName="body" ]
+    <section class="docs-heading">
+        <div class="container">
+            <h2>
+			<p><strong>个性化监控发送的所有历史邮件、掌握对方动态、做出正确评估.....</strong></p>
+			</h2>
+        </div>
+    </section>
+    <section  class="docs-content">
+	      <div  class="container">
+	        <article class="docs-body" style="width:820px">
+[@Finder sql="select * from Message where userId=${user_key.id}" /]
+[@QueryEntries name="messages" /]
+[#list messages as item]
+<p><a name="basic-routing"></a></p>
+<p><strong>${item.subject}</strong><strong style="float:right">${item.formEmail}</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="typ">IP:${item.ip}</span><span class="pun">::</span><span class="pun">(</span><span class="pln">${item.address}</span><span class="string">)</span>
+<span class="pun">{</span>
+<span class="pln">    </span><span class="keyword"><span class="kwd">第几次查看</span></span><span class="pln">    </span><span class="kwd">查看时间                                     </span><span class="pln">   </span><span class="kwd">点击次数</span><span class="pln">
+[@Finder sql="select * from MailMonitorInfo where messageId=${item.id} and type='邮件查看'" /]
+[@QueryEntries name="mailMonitorInfos" /]
+[#list mailMonitorInfos as mail ]
+[@Finder sql="select count(*) from MailMonitorInfo where messageId=1 and type='邮件内容点击'" /] 
+[#if mail_has_next]
+[@Finder sql=" and accessTime>='${mail.accessTime}' and accessTime<='${mailMonitorInfos[mail_index+1].accessTime}'" /]
+[#else]
+[@Finder sql=" and accessTime>='${mail.accessTime}'" /]	
+[/#if]
+<span class="pln">    </span><span class="keyword"><span class="kwd">${mail_index+1}      </span></span><span class="pln">    </span><span class="kwd"> ${mail.accessTime?datetime}</span><span class="pln">   </span><span class="kwd">                         [@QueryEntries primitive="true" write="true" /]次        </span>
+[/#list]
+</span><span class="pun">}</span></code></pre>
+[/#list]
+        </article>
+	        <div  class="clearfix"></div>
+	      </div>
+    </section>
+[/@Override]
+
+[/@Override]

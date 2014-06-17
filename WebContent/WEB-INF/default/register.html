@@ -1,0 +1,33 @@
+<div class="modal-body"">
+	<form id="J_form" action="/register.jhtml" class="form-horizontal">
+	<input type="hidden" name="returnUrl" value="${returnUrl}" />
+		<div class="control-group">
+			<label class="control-label">用户名</label>
+			<div class="controls">
+				<input type="text" id="J_username" name="username" maxlength="20" placeholder="Email">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">密码</label>
+			<div class="controls">
+				<input type="password" id="J_password" name="password"  maxlength="16"
+					placeholder="Password">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">确认密码</label>
+			<div class="controls">
+				<input type="password" id="J_verifyPassword" name="verifyPassword"  maxlength="16"
+					placeholder="Password">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<a id="J_login" href="/login.html?returnUrl=${returnUrl}"
+					style="color: #969696; font-weight: normal; text-decoration: none; cursor: auto; font-size: 11px;">立即登录</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp&nbsp;
+				<button type="submit" id="J_save" class="btn btn-primary" data-loading-text="提交....">&nbsp;&nbsp;注册&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</div>

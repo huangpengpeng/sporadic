@@ -1,0 +1,20 @@
+<#include "/WEB-INF/ftl/pony/ui/text.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/select.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/radio.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/checkbox.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/checkboxlist.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/textarea.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/hidden.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/file.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/tree.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/table.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/table-column.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/button.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/password.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/editor.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/form.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/td.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/tr.ftl"/>
+
+<#include "/WEB-INF/ftl/pony/ui/self_define_widget.ftl"/>
+<#include "/WEB-INF/ftl/pony/ui/paginable.ftl"/>
